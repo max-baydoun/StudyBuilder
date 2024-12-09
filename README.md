@@ -1,5 +1,4 @@
 # StudyBuilder
-***
 An app for studying efficiently, with every best study tool inside.
 The use starts off on the Landing page, where they are greeted with a login page. Once the user has logged in, they are taken to the Dashboard where they can see all of the knowledge spaces they have
 created. Once the user clicks on one, they are taken to that knowledge space where they can find their map of decks and cards, with each deck resembling a 'concept' and each card resembling an 'idea'.
@@ -7,8 +6,6 @@ Clicking on the deck brings up a sidebar where it gives the user the option to s
 the spaced repetition algorithm is running.
 
 # Specification
-***
-
 ## 1. Authentication
 - [ ] 1.1. On the register screen, there must be email, username, password and confirm password input fields. There must also be a button that says "Already a user?", which redirects the user to the Login page.
 - [ ] 1.2. On the login screen, ther must be username and password input fields. There must also be a button that says "Register", which redirects the user to the Register page.
