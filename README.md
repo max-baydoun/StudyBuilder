@@ -6,7 +6,7 @@ Clicking on the deck brings up a sidebar where it gives the user the option to s
 the spaced repetition algorithm is running.
 
 # Specification
-## 1. Authentication
+## 1. Landing Page
 
 ### 1.1. Register
 
@@ -93,8 +93,27 @@ the spaced repetition algorithm is running.
 - [ ] 3.5.3. The Question of each card is represented as a rectangle, with thin dashed arrows from the Deck node to each rectangle. This is known as the Card node.
 - [ ] 3.5.4. When the user drags each node, they should move smoothly with collision detection.
 
-### 3.6. Spaced Repetition Algorithm (Challenging Bits #2)
+### 3.6. Card types
 
+Each card can take one of X forms. Each form should be selected in a bar that shows up at the bottom of the screen. The forms are:
+
+#### 3.6.1. Cloze Test
+
+- [ ] 3.6.1.1 If the card contains a passage, then the "cloze test" option is highlighted for the user to select.
+- [ ] 3.6.1.2 Upon selection, the user can choose one of two types of cloze tests:
+  - [ ] 3.6.1.2.1 Classic Cloze testing: The test should be set out such that all the nouns are hidden in the passage.
+  - [ ] 3.6.1.2.2 Progressive Cloze testing: The test starts off as the entire answer with no words missing. There should be a button "Next" to move onto the next phase. In each subsequent phase, one word is deleted, and the user has to fill out the passage with those empty words. Eventually, the entire passage will be empty, and the user has to fill out the whole passage from memory.
+- [ ] 3.6.1.3 When the user finishes either of these tests, they click on a "Confirm" button to reveal the answers, and grade themselves on how they did on the grade scale.
+
+#### 3.6.2. Image Test
+
+- [ ] 3.6.2.1 If the card contains an image, then the "image test" option is highlighted for the user to select.
+- [ ] 3.6.2.2 When the user is presented with the card in learning mode, the user is prompted with an input field where they have to describe an image (i.e., caption the image).
+- [ ] 3.6.2.3 When the user finishes typing their answer, they click on a "Confirm" button to reveal the image, and grade themselves on how they did on the grade scale.
+
+### 3.7. Spaced Repetition Algorithm - Anki style (Challenging Bits #2)
+
+- [ ] 3.7.1. TODO 
 
 
 
