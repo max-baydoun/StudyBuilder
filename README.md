@@ -96,11 +96,11 @@ the spaced repetition algorithm is running.
 
 ### 3.6. Card types
 
-Each card can take one of X forms. Each form should be selected in a bar that shows up at the bottom of the screen. The forms are:
+Each card can take one of 3 forms. Each form should be selected in a bar that shows up at the bottom of the screen. The forms are:
 
 #### 3.6.1. Cloze Test
 
-- [ ] 3.6.1.1. If the card contains a passage, then the "cloze test" option is highlighted for the user to select.
+- [ ] 3.6.1.1. If the card contains a passage (i.e., 50+ words), then the "cloze test" option is highlighted for the user to select.
 - [ ] 3.6.1.2. Upon selection, the user can choose one of two types of cloze tests:
   - [ ] 3.6.1.2.1. Classic Cloze testing: The test should be set out such that all the nouns are hidden in the passage.
   - [ ] 3.6.1.2.2. Progressive Cloze testing: The test starts off as the entire answer with no words missing. There should be a button "Next" to move onto the next phase. In each subsequent phase, one word is deleted, and the user has to fill out the passage with those empty words. Eventually, the entire passage will be empty, and the user has to fill out the whole passage from memory.
@@ -112,6 +112,12 @@ Each card can take one of X forms. Each form should be selected in a bar that sh
 - [ ] 3.6.2.2. When the user is presented with the card in learning mode, the user is prompted with an input field where they have to describe an image (i.e., caption the image).
 - [ ] 3.6.2.3. When the user finishes typing their answer, they click on a "Confirm" button to reveal the image, and grade themselves on how they did on the grade scale.
 
+#### 3.6.3 Q/A Test
+
+- [ ] 3.6.3.1. If the card contains only a handful of words (i.e., < 50 words>), then the "Q/A test" option is highlighted for the user to select.
+- [ ] 3.6.3.2. When the user is presented with the card in learning mode, the user is prompted with the question, and then has to guess the answer. Clicking on the card reveals the answer and the grade scale which the user has to select from.
+- [ ] 3.6.3.3. Clicking on one of the grade scale options progresses through to the next card in the deck.
+
 ### 3.7. Study interval settings
 
 - [ ] 3.7.1. When the user double clicks on the KB node, a modal should show up that allows the user to select one of three tabs to manage intervals:
@@ -122,11 +128,17 @@ Each card can take one of X forms. Each form should be selected in a bar that sh
   - [ ] 3.7.2.1.
   - [ ] 3.7.2.2.
   - [ ] 3.7.2.3.
-  - [ ] 3.7.2.4.
+  - [ ] 3.7.2.4. 
 - [ ] 3.7.3. There should also exist a Confirm button to save changes.
 - [ ] 3.7.4. There should also exist a Cancel button to exit the modal.
 
-### 3.8. Spaced Repetition Algorithm - Anki style (Challenging Bits #2)
+### 3.8. Spaced Repetition Algorithm, implemented with the SM2 algorithm by SuperMemo (Challenging Bits #2)
+
+- [ ] 3.8.1. Follow the <a href="https://github.com/thyagoluciano/sm2/tree/master?tab=readme-ov-file">link</a> to implement this algorithm.
+
+### 3.9. Better SM2 algorithm, AKA, SM2+
+
+- [ ] 3.9.1. Follow the <a href="https://www.blueraja.com/blog/477/a-better-spaced-repetition-learning-algorithm-sm2">link</a> to implement this algorithm.
 
 
 
