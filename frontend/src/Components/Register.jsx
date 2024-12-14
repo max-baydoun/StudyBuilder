@@ -93,9 +93,6 @@ const Register = () => {
           <Grid2 size={12} >
             <Button variant="contained" size="large" fullWidth sx={{  backgroundColor: '#404040'}}  disabled={Object.values(userRegister).some(value => value === '')} onClick={handleSubmit}>Submit</Button>
           </Grid2>
-          <Grid2 size={12}>
-            <Button variant="contained" size="large" fullWidth sx={{  backgroundColor: '#242424'}} onClick={() => navigate('/login')}>Already have an account?</Button>
-          </Grid2>
         </Grid2>
       </Grid2>
       < GenericPopup object={popup} open={ openPopupModal} handleClose={() => setOpenPopupModal(false)}/>
