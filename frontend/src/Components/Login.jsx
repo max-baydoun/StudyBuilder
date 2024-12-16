@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import  GenericPopup from "../Popups/GenericPopup";
 import LoadingIcon from "../Popups/LoadingIcon";
 
+
 const Login = () => {
   const [userLogin, setUserLogin] = useState({email: '', password: ''});
+  const [showPassword, setShowPassword] = useState(false);
   const [popup, setPopup] = useState({title: '', message: ''});
   const [openPopupModal, setOpenPopupModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+                  
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -60,11 +63,66 @@ const Login = () => {
       <Grid2 container rowSpacing={2} columnSpacing={1} columns={12} sx={{margin: '30px 0px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px 0px', backgroundColor: 'rgba(0, 0, 0, 0.4)',borderRadius: '10px', minWidth: '400px'}}>
         <Grid2 container sx={{padding: '30px 0px', borderRadius: '3px', maxWidth: '300px'}}>
           <Grid2 size={12}>
-            <TextField size="small" label="Email" variant="outlined" sx={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}} onChange={event => handleSetEmail(event.target.value)}/>
+          <TextField
+            size="small"
+            label="Email"
+            variant="outlined"
+            sx={{
+              '& label.Mui-focused': {
+                color: 'white',
+              },
+              '& label': {
+                color: 'white',
+              },
+              '& .MuiOutlinedInput-root': {
+                color: 'white',
+                
+                '&.Mui-focused fieldset': {
+                  borderColor: '#6F7E8C',
+                },
+              },
+              backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            }}
+            onChange={(event) => handleSetEmail(event.target.value)}
+          />
+
           </Grid2>
           <Grid2 size={12}>
-            <TextField size="small" label="Password" type='password' variant="outlined" sx={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}} onChange={event => handleSetPassword(event.target.value)}/>
-          </Grid2>
+            <TextField
+              size="small"
+              label="Password"
+              type='password'
+              variant="outlined"
+              sx={{
+                '& label.Mui-focused': {
+                  color: 'white',
+                },
+                '& label': {
+                  color: 'white',
+                },
+                '& .MuiOutlinedInput-root': {
+                  color: 'white',
+                  
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#6F7E8C',
+                  },
+                },
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              }}
+              onChange={event => handleSetPassword(event.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <span
+                    class="material-symbols-outlined"
+                    style={{ cursor: 'pointer', color: 'white' }}
+                    onClick={() => setShowPassword((prev) => !prev)}
+                  >
+                    {showPassword ? 'visibility_off' : 'visibility'}
+                  </span>
+                )
+              }}  
+            />
+          </Grid2> 
         </Grid2>
         <Grid2 container sx={{ width: '230px'}}>
           <Grid2 size={12} >
