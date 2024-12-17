@@ -33,11 +33,11 @@ function LandingPage() {
             </Grid2>
             <Grid2 size={5} id="Auth Section" sx={{...fadeStyle, backgroundColor: 'rgba(0, 0, 0, 0.4)', zIndex: 3, display: 'flex', padding: '50px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <TabContext value={isLogin}>
-                    <TabList onChange={(_,v) => setIsLogin(v)} sx={fadeStyle} centered>
-                        <Tab label="Login" value={"1"} sx={{width: '25%', fontSize: '20px', color: 'white', backgroundColor: 'rgba(19, 24, 98, 0.5)', textTransform: 'none'}}/>
-                        <Tab label="Sign up" value={"0"} sx={{width: '25%', fontSize: '20px', color: 'white', backgroundColor: 'rgba(46, 68, 130, 0.5)', textTransform: 'none'}}/>
+                    <TabList onChange={(_,v) => setIsLogin(v)} sx={{...fadeStyle, width: '548px'}} variant='fullWidth'>
+                        <Tab label="Login" value={"1"} sx={{fontFamily: 'Urbanist', fontSize: '20px', color: 'white', backgroundColor: 'rgba(19, 24, 98, 0.5)', textTransform: 'none'}}/>
+                        <Tab label="Register" value={"0"} sx={{fontFamily: 'Urbanist', fontSize: '20px', color: 'white', backgroundColor: 'rgba(46, 68, 130, 0.5)', textTransform: 'none'}}/>
                     </TabList>
-                    <TabPanel value="1" sx={fadeStyle}><Login /></TabPanel>
+                    <TabPanel value="1" sx={{...fadeStyle, backgroundColor: 'rgba(0, 0, 255, 0.1)', borderRadius: '0px 0px 20px 20px'}}><Login /></TabPanel>
                     <TabPanel value="0" sx={fadeStyle}><Register /></TabPanel>
                 </TabContext>
             </Grid2>

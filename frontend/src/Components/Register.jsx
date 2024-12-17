@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 // import setStore from "../../routing/setStore";
 import  GenericPopup from "../Popups/GenericPopup";
 import LoadingIcon from "../Popups/LoadingIcon";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const Register = () => {
   const [userRegister, setUserRegister] = useState({name: '', email: '', password: '', confirmPassword: ''});
