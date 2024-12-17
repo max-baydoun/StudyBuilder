@@ -23,7 +23,7 @@ function LandingPage() {
                 <Typography variant='h1' sx={{...fadeStyle, transition: 'opacity ease-in 1s', fontWeight: 500, fontFamily: 'Urbanist', color: 'white', textAlign: 'center'}}>
                     Study Builder
                 </Typography>
-                <Typography variant='body1' sx={{...fadeStyle, fontWeight: 200, fontFamily: 'Urbanist',  color: 'white', textAlign: 'center', padding: '20px', margin: '50px', borderRadius: '10px', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
+                <Typography variant='h6' sx={{...fadeStyle, fontWeight: 200, fontFamily: 'Urbanist',  color: 'white', textAlign: 'center', padding: '20px', margin: '50px', borderRadius: '10px', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
                     Unlock your full potential with Study Builder, the ultimate tool to help you organize, plan, and create engaging study sessions.
                     Whether you&apos;re preparing for exams, mastering new topics, or simply expanding your knowledge, Study Builder brings together
                     the best resources and interactive features to guide your learning journey. With an intuitive interface, customizable study modes, 
@@ -38,7 +38,7 @@ function LandingPage() {
                         <Tab label="Register" value={"0"} sx={{fontFamily: 'Urbanist', fontSize: '20px', color: 'white', backgroundColor: 'rgba(46, 68, 130, 0.5)', textTransform: 'none'}}/>
                     </TabList>
                     <TabPanel value="1" sx={{...fadeStyle, backgroundColor: 'rgba(0, 0, 255, 0.1)', borderRadius: '0px 0px 20px 20px'}}><Login /></TabPanel>
-                    <TabPanel value="0" sx={fadeStyle}><Register /></TabPanel>
+                    <TabPanel value="0" sx={{...fadeStyle, backgroundColor: 'rgba(255, 0, 255, 0.1)', borderRadius: '0px 0px 20px 20px'}}><Register /></TabPanel>
                 </TabContext>
             </Grid2>
         </>
