@@ -2,11 +2,11 @@ import { Box, Checkbox, FormControl, FormControlLabel, Grid2, InputLabel, Outlin
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import { authRegister } from "../../routing/authFuncs";
-// import setStore from "../../routing/setStore";
 import GenericPopup from "../Popups/GenericPopup";
 import LoadingIcon from "../Popups/LoadingIcon";
 import { omit } from "underscore";
+import axios from "axios";
+
 
 const Register = () => {
     const [userRegister, setUserRegister] = useState({ name: "", email: "", password: "", confirmPassword: "" });
@@ -50,7 +50,7 @@ const Register = () => {
         });
     }
 
-    async function handleSubmit() {
+    function handleSubmit() {
         setIsLoading(true);
         if (userRegister.password !== userRegister.confirmPassword) {
             setPopup({ title: "Invalid Register", message: "Passwords do not match!" });
@@ -58,25 +58,22 @@ const Register = () => {
             setIsLoading(false);
             return;
         }
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(omit(userRegister, "confirmPassword")),
-        };
-        const response = await fetch("http://localhost:5000/auth/register", options);
-        const data = await response.json();
-        console.log(data);
-        if (data.error) {
-            setPopup({ title: "Internal server error", message: data.error });
-            setOpenPopupModal(true);
-        } else {
-            console.log(data);
+        axios.post(
+            "http://localhost:5000/auth/register",
+            omit(userRegister, "confirmPassword"),
+            {headers: {"Content-Type": 'application/json'}}
+        ).then(res => {
+            console.log(res);
+            const data = res.data;
             localStorage.setItem("token", data.token);
             navigate("/knowledgeSpaceBoard");
-        }
-        setIsLoading(false);
+        }).catch(error => {
+            console.log(error);
+            setPopup({ title: "Internal server error", message: error.message });
+            setOpenPopupModal(true);
+        }).finally(() => {
+            setIsLoading(false);
+        });
     }
 
     return (

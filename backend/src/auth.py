@@ -2,25 +2,28 @@ import re
 from datetime import datetime, timedelta
 from decorators.db import dbDecorator
 import jwt
+from error import InputError
+from werkzeug.exceptions import HTTPException, InternalServerError
 
 @dbDecorator
 def userRegister(cur, username, email, password):
+    print(username, email, password)
     if len(username) < 1 or len(username) > 50:
-        return {"error": "username must be between 1 and 50 characters. Please try again."}
+        raise HTTPException(description="Username must be between 1 and 50 characters. Please try again.")
 
     if len(password) < 6:
-        return {"error": "Password must be at least 6 characters long. Please try again."}
+        raise HTTPException(description="Password must be at least 6 characters long. Please try again.")
    
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Z|a-z]{2,}\b'
     if not re.fullmatch(regex, email):
-        return {"error": "Invalid email! Please try again"}
+        raise HTTPException("Invalid email! Please try again")
    
     if check_email_exists(email):
-        return {"error": "An account with this email is already registered"}
+        raise HTTPException("An account with this email is already registered")
    
    
     if check_username_exists(username):
-        return {"error": "username already exists. please use a different username"}
+        raise InputError("Username already exists. please use a different username")
 
 
     query = 'INSERT INTO Users (username, email, password) VALUES (?, ?, ?)'
@@ -37,11 +40,11 @@ def userLogin(cur, email, password, secret_key):
     result = getPassword(email)
 
     if result is None:
-        return {"error": "user with specified email doesn't exist"}
+        raise InputError("User with specified email doesn't exist")
    
     user_password = str(result[0])
     if (user_password != password):
-        return {"error": "Incorrect password. Please try again"}
+        raise InputError("Incorrect password. Please try again")
    
     payload = {
         'email':email,
