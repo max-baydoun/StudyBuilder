@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 // import setStore from "../../routing/setStore";
 import GenericPopup from "../Popups/GenericPopup";
 import LoadingIcon from "../Popups/LoadingIcon";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { omit } from "underscore";
 
 const Register = () => {
     const [userRegister, setUserRegister] = useState({ name: "", email: "", password: "", confirmPassword: "" });
@@ -52,27 +51,32 @@ const Register = () => {
     }
 
     async function handleSubmit() {
-        console.log(userRegister);
-        // setIsLoading(true);
-        // if (userRegister.password !== userRegister.confirmPassword) {
-        //   setPopup({title: 'Invalid Register', message: 'Passwords do not match!'});
-        //   setOpenPopupModal(true);
-        //   setIsLoading(false);
-        //   return;
-        // }
-        // const {name, email, password} = userRegister;
-        // const payload = {name, email, password};
-        // const user = await authRegister(payload);
-        // if (user.error) {
-        //   setPopup({title: 'Internal server error', message: user.error});
-        //   setOpenPopupModal(true);
-        // }
-        // else {
-        //   localStorage.setItem("token", user.token)
-        //   await setStore({presentations: []});
-        //   navigate('/dashboard');
-        // }
-        // setIsLoading(false);
+        setIsLoading(true);
+        if (userRegister.password !== userRegister.confirmPassword) {
+            setPopup({ title: "Invalid Register", message: "Passwords do not match!" });
+            setOpenPopupModal(true);
+            setIsLoading(false);
+            return;
+        }
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(omit(userRegister, "confirmPassword")),
+        };
+        const response = await fetch("http://localhost:5000/auth/register", options);
+        const data = await response.json();
+        console.log(data);
+        if (data.error) {
+            setPopup({ title: "Internal server error", message: data.error });
+            setOpenPopupModal(true);
+        } else {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate("/knowledgeSpaceBoard");
+        }
+        setIsLoading(false);
     }
 
     return (

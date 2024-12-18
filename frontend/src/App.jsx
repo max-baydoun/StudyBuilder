@@ -3,6 +3,7 @@ import Login from './Components/Login'
 import Register from './Components/Register'
 import LandingPage from './Components/LandingPage'
 import { Box, GlobalStyles } from '@mui/material'
+import KnowledgeSpaceBoard from './Components/KnowledgeSpaceBoard'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<LandingPage />}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/register' element={<Register />}></Route>
+          <Route path='/knowledgeSpaceBoard' element={<KnowledgeSpaceBoard />}></Route>
         </Routes>
       </BrowserRouter>
     </Box>

@@ -36,17 +36,27 @@ const Login = () => {
     }
 
     async function handleSubmit() {
-        //   setIsLoading(true);
-        //   const user = await authLogin(userLogin);
-        //   if (user.error) {
-        //     setPopup({title: 'Internal server error', message: user.error});
-        //     setOpenPopupModal(true);
-        //   }
-        //   else {
-        //     localStorage.setItem("token", user.token)
-        //     navigate('/dashboard');
-        //   }
-        //   setIsLoading(false);
+        setIsLoading(true);
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(userLogin)
+        }
+        const response = await fetch('http://localhost:5000/auth/login', options);
+        const data = await response.json();
+        console.log(data);
+          if (data.error) {
+            setPopup({title: 'Internal server error', message: data.error});
+            setOpenPopupModal(true);
+          }
+          else {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate("/knowledgeSpaceBoard");
+          }
+        setIsLoading(false);
     }
 
     return (
@@ -112,8 +122,7 @@ const Login = () => {
                         onChange={(event) => handleSetPassword(event.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
-                                <IconButton sx={{ color: showPassword ? "black" : "white" }} onClick={() => setShowPassword((prev) => !prev)}>
-                                    {" "}
+                                <IconButton sx={{ color: "white" }} onClick={() => setShowPassword((prev) => !prev)}>
                                     {showPassword ? <VisibilityOff /> : <Visibility />}{" "}
                                 </IconButton>
                             </InputAdornment>
