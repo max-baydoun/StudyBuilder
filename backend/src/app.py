@@ -16,12 +16,12 @@ def hello():
 @app.route("/auth/register", methods=['POST'])
 def register():
     name, email, password = itemgetter('name', 'email', 'password')(request.get_json())
-    return dumps(userRegister(name, email, password))
+    return userRegister(name, email, password, app.config['SECRET_KEY'])
 
 @app.route("/auth/login", methods=['POST'])
 def login():
     email, password = itemgetter('email', 'password')(request.get_json())
-    return dumps(userLogin(email, password, app.config['SECRET_KEY']))
+    return userLogin(email, password, app.config['SECRET_KEY'])
   
 
 if __name__ == "__main__":

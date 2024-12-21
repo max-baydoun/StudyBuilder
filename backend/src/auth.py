@@ -2,28 +2,25 @@ import re
 from datetime import datetime, timedelta
 from decorators.db import dbDecorator
 import jwt
-from error import InputError
-from werkzeug.exceptions import HTTPException, InternalServerError
+from error import BackendError, InputError
 
 @dbDecorator
-def userRegister(cur, username, email, password):
-    print(username, email, password)
+def userRegister(cur, username, email, password, secret_key):
     if len(username) < 1 or len(username) > 50:
-        raise HTTPException(description="Username must be between 1 and 50 characters. Please try again.")
+        return InputError("Username must be between 1 and 50 characters. Please try again.").to_dict()
 
     if len(password) < 6:
-        raise HTTPException(description="Password must be at least 6 characters long. Please try again.")
-   
+        return InputError("Password must be at least 6 characters long. Please try again.").to_dict()
+
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Z|a-z]{2,}\b'
     if not re.fullmatch(regex, email):
-        raise HTTPException("Invalid email! Please try again")
-   
+        return InputError("Invalid email! Please try again").to_dict()
+
     if check_email_exists(email):
-        raise HTTPException("An account with this email is already registered")
-   
-   
+        return InputError("An account with this email is already registered").to_dict()
+
     if check_username_exists(username):
-        raise InputError("Username already exists. please use a different username")
+        return InputError("Username already exists. please use a different username").to_dict()
 
 
     query = 'INSERT INTO Users (username, email, password) VALUES (?, ?, ?)'
@@ -33,18 +30,29 @@ def userRegister(cur, username, email, password):
     result = cur.fetchone()
 
     if result:
-        return {'u_id' : result[0]}
+        payload = {
+        'email':email,
+        'exp': datetime.now() + timedelta(minutes=60) #token is valid for 60 min
+        }
+        token = jwt.encode(payload, secret_key, algorithm='HS256')
+
+        query = 'UPDATE Users SET token=? WHERE email=?'
+        cur.execute(query, (token, email))
+
+        return {'u_id' : result[0], 'token': token}, 200
+    else:
+        return BackendError('Database Error', 'Unable to generate user id').to_dict()
 
 @dbDecorator
 def userLogin(cur, email, password, secret_key):
     result = getPassword(email)
 
     if result is None:
-        raise InputError("User with specified email doesn't exist")
+        return InputError("User with specified email doesn't exist").to_dict()
    
     user_password = str(result[0])
     if (user_password != password):
-        raise InputError("Incorrect password. Please try again")
+        return InputError("Incorrect password. Please try again").to_dict
    
     payload = {
         'email':email,

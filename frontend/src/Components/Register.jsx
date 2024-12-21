@@ -69,7 +69,7 @@ const Register = () => {
             navigate("/knowledgeSpaceBoard");
         }).catch(error => {
             console.log(error);
-            setPopup({ title: "Internal server error", message: error.message });
+            setPopup({ title: "Internal server error", message: error.response.data.error });
             setOpenPopupModal(true);
         }).finally(() => {
             setIsLoading(false);
