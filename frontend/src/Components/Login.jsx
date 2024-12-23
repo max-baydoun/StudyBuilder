@@ -1,11 +1,11 @@
 import { Box, Grid2, TextField, Typography, Button, IconButton, Input, InputLabel, InputAdornment, OutlinedInput, FormControl } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import { authLogin } from "../../routing/authFuncs";
 import GenericPopup from "../Popups/GenericPopup";
 import LoadingIcon from "../Popups/LoadingIcon";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import axios from "axios";
 
 const Login = () => {
     const [userLogin, setUserLogin] = useState({ email: "", password: "" });
@@ -37,26 +37,22 @@ const Login = () => {
 
     async function handleSubmit() {
         setIsLoading(true);
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(userLogin)
-        }
-        const response = await fetch('http://localhost:5000/auth/login', options);
-        const data = await response.json();
-        console.log(data);
-          if (data.error) {
-            setPopup({title: 'Internal server error', message: data.error});
-            setOpenPopupModal(true);
-          }
-          else {
-            console.log(data);
+        axios.post(
+            "http://localhost:5000/auth/login",
+            userLogin,
+            {headers: {"Content-Type": 'application/json'}}
+        ).then(res => {
+            console.log(res);
+            const data = res.data;
             localStorage.setItem("token", data.token);
             navigate("/knowledgeSpaceBoard");
-          }
-        setIsLoading(false);
+        }).catch(error => {
+            console.log(error);
+            setPopup({ title: "Internal server error", message: error.response.data.error });
+            setOpenPopupModal(true);
+        }).finally(() => {
+            setIsLoading(false);
+        });
     }
 
     return (

@@ -52,7 +52,7 @@ def userLogin(cur, email, password, secret_key):
    
     user_password = str(result[0])
     if (user_password != password):
-        return InputError("Incorrect password. Please try again").to_dict
+        return InputError("Incorrect password. Please try again").to_dict()
    
     payload = {
         'email':email,
@@ -63,7 +63,7 @@ def userLogin(cur, email, password, secret_key):
     query = 'UPDATE Users SET token=? WHERE email=?'
     cur.execute(query, (token, email))
 
-    return {'token': token}
+    return {'token': token}, 200
 
 @dbDecorator
 def user_logout(cur, userId):
@@ -73,9 +73,9 @@ def user_logout(cur, userId):
     return {}
 
 @dbDecorator
-def getPassword(cur, username):
+def getPassword(cur, email):
     query = 'select password FROM Users WHERE email = ?'
-    cur.execute(query, (username, ))
+    cur.execute(query, (email, ))
     result = cur.fetchone()
 
     return result
