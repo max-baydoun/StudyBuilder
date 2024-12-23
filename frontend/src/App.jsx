@@ -3,7 +3,7 @@ import Login from './Components/Login'
 import Register from './Components/Register'
 import LandingPage from './Components/LandingPage'
 import { Box, GlobalStyles } from '@mui/material'
-import KnowledgeSpaceBoard from './Components/KnowledgeSpaceBoard'
+import Dashboard from './Components/Dashboard'
 
 function App() {
 
@@ -13,9 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<LandingPage />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/register' element={<Register />}></Route>
-          <Route path='/knowledgeSpaceBoard' element={<KnowledgeSpaceBoard />}></Route>
+          <Route path='/dashboard' element={<Dashboard />}></Route>
         </Routes>
       </BrowserRouter>
     </Box>

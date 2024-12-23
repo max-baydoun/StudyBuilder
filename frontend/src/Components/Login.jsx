@@ -45,7 +45,7 @@ const Login = () => {
             console.log(res);
             const data = res.data;
             localStorage.setItem("token", data.token);
-            navigate("/knowledgeSpaceBoard");
+            navigate("/dashboard");
         }).catch(error => {
             console.log(error);
             setPopup({ title: "Internal server error", message: error.response.data.error });

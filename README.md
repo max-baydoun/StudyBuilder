@@ -25,8 +25,8 @@ the spaced repetition algorithm is running.
 
 ### 2.1. Creating a Knowledge Base
 
-- [ ] 2.1.1 A button saying "Create KB" should exist on the dashboard at all times.
-- [ ] 2.1.2. If no knowledge space exists, there should be a message saying "Your second brain seems to be looking a little empty, click the "Create KB" button to create a new Knowledge Base!".
+- [X] 2.1.1 A button saying "Create KB" should exist on the dashboard at all times.
+- [X] 2.1.2. If no knowledge space exists, there should be a message saying "Your second brain seems to be looking a little empty, click the "Create KB" button to create a new Knowledge Base!".
 - [ ] 2.1.3. Upon clicking "Create KB", a modal should appear with a button saying "Confirm", as well as fields where the user is able to enter:
   - [ ] 2.1.3.1. The name of the KB. (must be between 3 and 20 characters inclusive)
   - [ ] 2.1.3.2. A description of the KB. (must be between 3 and 100 characters inclusive)

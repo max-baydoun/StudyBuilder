@@ -20,7 +20,7 @@ function LandingPage() {
     return (
         <>
             <Grid2 size={7} id="Study Builder Text" sx={{zIndex: logoClicked ? 3 : -10, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-                <Typography variant='h1' sx={{...fadeStyle, transition: 'opacity ease-in 1s', fontWeight: 500, fontFamily: 'Urbanist', color: 'white', textAlign: 'center'}}>
+                <Typography variant='h1' sx={{...fadeStyle, fontWeight: 500, fontFamily: 'Urbanist', color: 'white', textAlign: 'center'}}>
                     Study Builder
                 </Typography>
                 <Typography variant='h6' sx={{...fadeStyle, fontWeight: 200, fontFamily: 'Urbanist',  color: 'white', textAlign: 'center', padding: '20px', margin: '50px', borderRadius: '10px', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
