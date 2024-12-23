@@ -17,7 +17,7 @@ def userRegister(cur, username, email, password, secret_key):
         return InputError("Invalid email! Please try again").to_dict()
 
     if check_email_exists(email):
-        return InputError("An account with this email is already registered").to_dict()
+        return InputError("An account with this email is already registered. Consider logging in with this account if this is yours.").to_dict()
 
     if check_username_exists(username):
         return InputError("Username already exists. please use a different username").to_dict()
