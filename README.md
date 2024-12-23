@@ -10,15 +10,15 @@ the spaced repetition algorithm is running.
 
 ### 1.1. Register
 
-- [ ] 1.1.1. On the register screen, there must be email, username, password and confirm password input fields.
-- [ ] 1.1.2. If an email exists, a popup should appear with the message "Email already exists, please sign up with this email or try another email."
-- [ ] 1.1.3. There must be a button that says "Already a user?", which redirects the user to the Login page when clicked.
+- [X] 1.1.1. On the register screen, there must be email, username, password and confirm password input fields.
+- [X] 1.1.2. If an email exists, a popup should appear with the message "Email already exists, please sign up with this email or try another email."
+- [X] 1.1.3. There must be a button that says "Already a user?", which redirects the user to the Login page when clicked.
 
-### 1.2.1. Login
+### 1.2. Login
 
-- [ ] 1.2.1. On the login screen, ther must be username and password input fields.
-- [ ] 1.2.2. If either the username or password are incorrect, a popup should appear with the message "Invalid username/password".
-- [ ] 1.2.3. There must be a button that says "Register", which redirects the user to the Register page when clicked.
+- [X] 1.2.1. On the login screen, ther must be username and password input fields.
+- [X] 1.2.2. If either the username or password are incorrect, a popup should appear with the message "Invalid username/password".
+- [X] 1.2.3. There must be a button that says "Register", which redirects the user to the Register page when clicked.
 
 
 ## 2. Dashboard
