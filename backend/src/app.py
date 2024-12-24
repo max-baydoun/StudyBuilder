@@ -1,6 +1,5 @@
 from flask import Flask, request
 from flask_cors import CORS
-from json import dumps
 from auth import userRegister, userLogin
 from operator import itemgetter
 from db import createAllTables
