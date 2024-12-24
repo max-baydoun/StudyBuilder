@@ -81,6 +81,7 @@ function StarryCanvas({ noOfStars }) {
       width={canvasSize.width}
       height={canvasSize.height}
       style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+      id='stars'
     />
   );
 }
