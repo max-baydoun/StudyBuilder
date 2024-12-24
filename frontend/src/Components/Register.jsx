@@ -6,6 +6,7 @@ import GenericPopup from "../Popups/GenericPopup";
 import LoadingIcon from "../Popups/LoadingIcon";
 import { omit } from "underscore";
 import axios from "axios";
+import SERVER_URL from "../config";
 
 
 const Register = () => {
@@ -59,7 +60,7 @@ const Register = () => {
             return;
         }
         axios.post(
-            "http://localhost:5000/auth/register",
+            `${SERVER_URL}/auth/register`,
             omit(userRegister, "confirmPassword"),
             {headers: {"Content-Type": 'application/json'}}
         ).then(res => {
@@ -68,6 +69,7 @@ const Register = () => {
             localStorage.setItem("token", data.token);
             navigate("/dashboard");
         }).catch(error => {
+            console.log(SERVER_URL)
             console.log(error);
             setPopup({ title: "Internal server error", message: error.response.data.error });
             setOpenPopupModal(true);
