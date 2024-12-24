@@ -38,7 +38,7 @@ const Login = () => {
     async function handleSubmit() {
         setIsLoading(true);
         axios.post(
-            "http://localhost:5000/auth/login",
+            `${SERVER_URL}/auth/login`,
             userLogin,
             {headers: {"Content-Type": 'application/json'}}
         ).then(res => {
