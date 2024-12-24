@@ -22,24 +22,23 @@ def userRegister(cur, username, email, password, secret_key):
     if check_username_exists(username):
         return InputError("Username already exists. please use a different username").to_dict()
 
-
-    query = 'INSERT INTO Users (username, email, password) VALUES (?, ?, ?)'
+    # PostgreSQL uses %s, %s, ... for parameter placeholders
+    query = 'INSERT INTO Users (username, email, password) VALUES (%s, %s, %s) RETURNING userId'
     cur.execute(query, (username, email, password))
 
-    cur.execute('SELECT last_insert_rowid() AS u_id;')
     result = cur.fetchone()
 
     if result:
         payload = {
-        'email':email,
-        'exp': datetime.now() + timedelta(minutes=60) #token is valid for 60 min
+            'email': email,
+            'exp': datetime.now() + timedelta(minutes=60)  # token is valid for 60 min
         }
         token = jwt.encode(payload, secret_key, algorithm='HS256')
 
-        query = 'UPDATE Users SET token=? WHERE email=?'
+        query = 'UPDATE Users SET token=%s WHERE email=%s'
         cur.execute(query, (token, email))
 
-        return {'u_id' : result[0], 'token': token}, 200
+        return {'u_id': result[0], 'token': token}, 200
     else:
         return BackendError('Database Error', 'Unable to generate user id').to_dict()
 
@@ -49,53 +48,54 @@ def userLogin(cur, email, password, secret_key):
 
     if result is None:
         return InputError("User with specified email doesn't exist").to_dict()
-   
+
     user_password = str(result[0])
-    if (user_password != password):
+    if user_password != password:
         return InputError("Incorrect password. Please try again").to_dict()
-   
+
     payload = {
-        'email':email,
-        'exp': datetime.now() + timedelta(minutes=60) #token is valid for 60 min
+        'email': email,
+        'exp': datetime.now() + timedelta(minutes=60)  # token is valid for 60 min
     }
     token = jwt.encode(payload, secret_key, algorithm='HS256')
 
-    query = 'UPDATE Users SET token=? WHERE email=?'
+    # Use PostgreSQL parameter placeholders
+    query = 'UPDATE Users SET token=%s WHERE email=%s'
     cur.execute(query, (token, email))
 
     return {'token': token}, 200
 
 @dbDecorator
 def user_logout(cur, userId):
-    query = "UPDATE Users SET token = ? WHERE user_id = ?"
-    cur.execute(query, (None, userId))
+    # PostgreSQL parameter placeholders
+    query = "UPDATE Users SET token = NULL WHERE userId=%s"
+    cur.execute(query, (userId,))
 
     return {}
 
 @dbDecorator
 def getPassword(cur, email):
-    query = 'select password FROM Users WHERE email = ?'
-    cur.execute(query, (email, ))
+    # PostgreSQL parameter placeholders
+    query = 'SELECT password FROM Users WHERE email=%s'
+    cur.execute(query, (email,))
     result = cur.fetchone()
 
     return result
 
 @dbDecorator
 def check_username_exists(cur, username):
-    query = 'SELECT COUNT(*) FROM Users WHERE username = ?'
-    cur.execute(query, (username, ))
+    # PostgreSQL parameter placeholders
+    query = 'SELECT COUNT(*) FROM Users WHERE username=%s'
+    cur.execute(query, (username,))
     count = cur.fetchone()
 
-    if count[0] > 0:
-        return True
-    return False
+    return count[0] > 0
 
 @dbDecorator
 def check_email_exists(cur, email):
-    query = 'SELECT COUNT(*) FROM Users WHERE email = ?'
-    cur.execute(query, (email, ))
+    # PostgreSQL parameter placeholders
+    query = 'SELECT COUNT(*) FROM Users WHERE email=%s'
+    cur.execute(query, (email,))
     count = cur.fetchone()
 
-    if count[0] > 0:
-        return True
-    return False
+    return count[0] > 0

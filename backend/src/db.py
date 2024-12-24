@@ -4,12 +4,12 @@ from decorators.db import dbDecorator
 def createUsersTable(cur):
     cur.execute('''
         CREATE TABLE IF NOT EXISTS Users (
-            userId INTEGER NOT NULL PRIMARY KEY,
-            token STRING,
-            username STRING NOT NULL,
-            email STRING,
-            password STRING
-        )
+            userId SERIAL PRIMARY KEY,
+            token TEXT,
+            username TEXT NOT NULL,
+            email TEXT,
+            password TEXT
+        );
     ''')
 
 def createAllTables():
