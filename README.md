@@ -130,10 +130,10 @@ Each card can take one of 3 forms. Each form should be selected in a bar that sh
   - [ ] 3.7.1.2. Trimester
   - [ ] 3.7.1.3. Custom
 - [ ] 3.7.2. The intervals to incorporate include:
-  - [ ] 3.7.2.1. <TBD>
-  - [ ] 3.7.2.2. <TBD>
-  - [ ] 3.7.2.3. <TBD>
-  - [ ] 3.7.2.4. <TBD>
+  - [ ] 3.7.2.1. To be determined
+  - [ ] 3.7.2.2. To be determined
+  - [ ] 3.7.2.3. To be determined
+  - [ ] 3.7.2.4. ...
 - [ ] 3.7.3. There should also exist a Confirm button to save changes.
 - [ ] 3.7.4. There should also exist a Cancel button to exit the modal.
 
