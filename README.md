@@ -5,6 +5,11 @@ created. Once the user clicks on one, they are taken to that knowledge space whe
 Clicking on the deck brings up a sidebar where it gives the user the option to study the deck. Similar to Anki, the user goes through each deck and attempts to recall information on the spot, whilst
 the spaced repetition algorithm is running.
 
+# Images
+![image](README_ASSETS/FirstPage.png)
+![image](README_ASSETS/LoginPage.png)
+![image](README_ASSETS/KnowledgeBasesPage.png)
+
 # Specification
 ## 1. Landing Page
 
